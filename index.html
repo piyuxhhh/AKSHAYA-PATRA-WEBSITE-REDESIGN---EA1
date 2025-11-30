@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akshaya Patra Foundation - No Child Should Go Hungry</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-orange: #ff6b35;
+        --dark-orange: #e55a2b;
+        --light-orange: #fff5f0;
+        --dark-green: #0a5f4c;
+        --light-green: #27ae60;
+        --dark-text: #2c3e50;
+        --light-text: #7f8c8d;
+        --cream: #fff9f0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--dark-text);
+        overflow-x: hidden;
+        background-color: var(--cream);
+      }
+
+      /* Decorative Elements */
+      .decorative-circle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.6;
+        z-index: 0;
+      }
+
+      .circle-1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #ffd89b, #ff9a56);
+        top: -100px;
+        right: -50px;
+      }
+
+      .circle-2 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #a8e6cf, #56ccf2);
+        bottom: 50px;
+        left: -50px;
+      }
+
+      /* Navigation */
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        padding: 1.2rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-brand {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--primary-orange) !important;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .navbar-brand i {
+        font-size: 1.8rem;
+      }
+
+      .nav-link {
+        color: var(--dark-text) !important;
+        font-weight: 500;
+        margin: 0 1rem;
+        transition: color 0.3s;
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-orange);
+        transition: width 0.3s;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .btn-donate-nav {
+        background-color: var(--primary-orange);
+        color: white !important;
+        padding: 0.7rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: 2px solid var(--primary-orange);
+      }
+
+      .btn-donate-nav:hover {
+        background-color: white;
+        color: var(--primary-orange) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        position: relative;
+        padding: 6rem 0 4rem;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fff9f0 0%, #ffe8d6 100%);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+        color: var(--dark-text);
+      }
+
+      .hero-section .highlight {
+        color: var(--primary-orange);
+        position: relative;
+        display: inline-block;
+      }
+
+      .hero-section p.lead {
+        font-size: 1.3rem;
+        color: var(--light-text);
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+
+      .hero-image-collage {
+        position: relative;
+        height: 500px;
+      }
+
+      .collage-img {
+        position: absolute;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .collage-img:hover {
+        transform: scale(1.05);
+      }
+
+      .collage-img-1 {
+        width: 280px;
+        height: 350px;
+        top: 0;
+        right: 20%;
+        z-index: 3;
+        transform: rotate(-5deg);
+      }
+
+      .collage-img-2 {
+        width: 250px;
+        height: 300px;
+        bottom: 20px;
+        right: 40%;
+        z-index: 2;
+        transform: rotate(8deg);
+      }
+
+      .collage-img-3 {
+        width: 200px;
+        height: 250px;
+        top: 80px;
+        right: 0;
+        z-index: 1;
+        transform: rotate(-3deg);
+      }
+
+      .btn-hero {
+        background-color: var(--primary-orange);
+        color: white;
+        padding: 1.1rem 3rem;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+      }
+
+      .btn-hero:hover {
+        background-color: var(--dark-orange);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+      }
+
+      .btn-secondary-hero {
+        background-color: transparent;
+        color: var(--dark-text);
+        padding: 1.1rem 3rem;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        border: 2px solid var(--dark-text);
+        font-weight: 600;
+        transition: all 0.3s;
+        margin-left: 1rem;
+      }
+
+      .btn-secondary-hero:hover {
+        background-color: var(--dark-text);
+        color: white;
+      }
+
+      /* Stats Section */
+      .stats-section {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, var(--light-orange), #fff);
+        border-radius: 20px;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary-orange);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--primary-orange);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1.2rem;
+        color: var(--dark-text);
+        font-weight: 600;
+      }
+
+      .stat-sublabel {
+        font-size: 0.95rem;
+        color: var(--light-text);
+      }
+
+      /* Programs Section */
+      .programs-section {
+        padding: 5rem 0;
+        position: relative;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 1rem;
+        color: var(--dark-text);
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--light-text);
+        font-size: 1.2rem;
+        margin-bottom: 4rem;
+      }
+
+      .program-card {
+        position: relative;
+        border-radius: 25px;
+        overflow: hidden;
+        height: 400px;
+        transition: all 0.4s;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+      }
+
+      .program-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(0, 0, 0, 0.8) 100%
+        );
+        z-index: 1;
+      }
+
+      .program-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+
+      .program-card:hover img {
+        transform: scale(1.1);
+      }
+
+      .program-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .program-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem;
+        color: white;
+        z-index: 2;
+      }
+
+      .program-content h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .program-content p {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+
+      .btn-program {
+        background: white;
+        color: var(--dark-text);
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: all 0.3s;
+      }
+
+      .btn-program:hover {
+        background: var(--primary-orange);
+        color: white;
+      }
+
+      /* Feature Cards */
+      .feature-card {
+        background: white;
+        border-radius: 25px;
+        padding: 3rem 2rem;
+        text-align: center;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+        height: 100%;
+        border: 2px solid transparent;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary-orange);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+      }
+
+      .feature-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--light-orange), #ffd89b);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2.5rem;
+        color: var(--primary-orange);
+      }
+
+      .feature-card h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      /* Impact Story Section */
+      .story-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #e3f2fd 0%, #fff9f0 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .story-card {
+        background: white;
+        border-radius: 30px;
+        padding: 3rem;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      }
+
+      .story-badge {
+        display: inline-block;
+        background: var(--primary-orange);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 6rem 0;
+        background: linear-gradient(
+          135deg,
+          var(--primary-orange),
+          var(--dark-orange)
+        );
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+      }
+
+      .btn-cta {
+        background: white;
+        color: var(--primary-orange);
+        padding: 1.2rem 3rem;
+        border-radius: 50px;
+        font-weight: 700;
+        border: none;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+      }
+
+      .btn-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer h5 {
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--primary-orange);
+      }
+
+      .footer a {
+        color: #bbb;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.8rem;
+        transition: color 0.3s;
+      }
+
+      .footer a:hover {
+        color: var(--primary-orange);
+      }
+
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-image-collage {
+          height: 300px;
+          margin-top: 3rem;
+        }
+
+        .collage-img-1 {
+          width: 200px;
+          height: 250px;
+        }
+
+        .collage-img-2 {
+          width: 180px;
+          height: 220px;
+        }
+
+        .collage-img-3 {
+          display: none;
+        }
+
+        .btn-secondary-hero {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-bowl-rice"></i> Akshaya Patra
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-work.html">Our Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="impact.html">Impact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="get-involved.html">Get Involved</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item ms-3">
+              <a href="donate.html" class="btn btn-donate-nav">Donate Now</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="decorative-circle circle-1"></div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-content">
+            <h1>
+              <span class="highlight">Nourishing</span> dreams,<br />
+              one meal at a time
+            </h1>
+            <p class="lead">
+              Help us feed 2 million children daily and transform their future
+              through the power of nutrition and education.
+            </p>
+            <div class="hero-buttons">
+              <a href="donate.html" class="btn btn-hero">Feed A Child Today</a>
+              <a href="about.html" class="btn btn-secondary-hero">Our Story</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image-collage">
+              <img
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400"
+                alt="Happy child"
+                class="collage-img collage-img-1"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400"
+                alt="Children eating"
+                class="collage-img collage-img-2"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400"
+                alt="School meal"
+                class="collage-img collage-img-3"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="decorative-circle circle-2"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-number">2.1M+</span>
+              <div class="stat-label">Children Fed</div>
+              <div class="stat-sublabel">Every single day</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-number">14,702</span>
+              <div class="stat-label">Schools Reached</div>
+              <div class="stat-sublabel">Across 14 states</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-card">
+              <span class="stat-number">5.8B+</span>
+              <div class="stat-label">Meals Served</div>
+              <div class="stat-sublabel">Since 2000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs-section">
+      <div class="container">
+        <h2 class="section-title">Our Programs</h2>
+        <p class="section-subtitle">
+          Discover how we're making an impact across India
+        </p>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="program-card">
+              <img
+                src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600"
+                alt="Mid-day meals"
+              />
+              <div class="program-content">
+                <h3>Mid-Day Meals</h3>
+                <p>
+                  Nutritious freshly-cooked meals served to children every
+                  school day
+                </p>
+                <a href="our-work.html" class="btn-program">Learn More →</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="program-card">
+              <img
+                src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600"
+                alt="Kitchen operations"
+              />
+              <div class="program-content">
+                <h3>State-of-art Kitchens</h3>
+                <p>61 centralized kitchens with cutting-edge technology</p>
+                <a href="our-work.html" class="btn-program">Explore →</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="program-card">
+              <img
+                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600"
+                alt="Impact stories"
+              />
+              <div class="program-content">
+                <h3>Impact Stories</h3>
+                <p>Real stories of transformation through proper nutrition</p>
+                <a href="impact.html" class="btn-program">Read Stories →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="programs-section bg-light">
+      <div class="container">
+        <h2 class="section-title">Why Support Us?</h2>
+        <p class="section-subtitle">
+          We're committed to transparency and maximum impact
+        </p>
+
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <h3>80G Certified</h3>
+              <p class="text-muted">Tax benefits on 50% of your donation</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <h3>83% to Programs</h3>
+              <p class="text-muted">
+                Maximum funds go directly to feeding children
+              </p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3>Fully Transparent</h3>
+              <p class="text-muted">Audited annually with public reports</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <h3>Award Winning</h3>
+              <p class="text-muted">Recognized globally for our impact</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1497375092241-b2a86806d8e5?w=700"
+              alt="Success story"
+              class="img-fluid rounded shadow-lg"
+              style="border-radius: 30px !important"
+            />
+          </div>
+          <div class="col-lg-6">
+            <div class="story-card">
+              <span class="story-badge">Success Story</span>
+              <h2 class="mb-4">Meet Ravi: From Hunger to Honor Student</h2>
+              <p class="lead text-muted">
+                10-year-old Ravi from Karnataka was struggling with malnutrition
+                and irregular school attendance. Since receiving daily
+                nutritious meals through Akshaya Patra, his attendance improved
+                to 95% and he's now excelling in his studies.
+              </p>
+              <p class="text-muted">
+                "The meals give me energy to focus on my studies. I want to
+                become a teacher and help other children like me." - Ravi
+              </p>
+              <a href="impact.html" class="btn btn-hero mt-3"
+                >Read More Stories</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container text-center">
+        <h2>Join 2 Million+ Supporters</h2>
+        <p class="lead mb-4">
+          Together, we can ensure no child goes to bed hungry
+        </p>
+        <a href="donate.html" class="btn btn-cta me-3">Donate Now</a>
+        <a
+          href="get-involved.html"
+          class="btn btn-cta"
+          style="background: transparent; border: 2px solid white; color: white"
+          >Get Involved</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5>Akshaya Patra Foundation</h5>
+            <p class="text-muted">
+              World's largest NGO-run mid-day meal program, serving over 2
+              million children daily across India.
+            </p>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h5>Quick Links</h5>
+            <a href="about.html">About Us</a>
+            <a href="our-work.html">Our Work</a>
+            <a href="impact.html">Impact</a>
+            <a href="donate.html">Donate</a>
+          </div>
+          <div class="col-md-3 mb-4">
+            <h5>Get Involved</h5>
+            <a href="get-involved.html">Volunteer</a>
+            <a href="get-involved.html">Partner With Us</a>
+            <a href="get-involved.html">Fundraise</a>
+            <a href="contact.html">Careers</a>
+          </div>
+          <div class="col-md-3 mb-4">
+            <h5>Contact</h5>
+            <p class="text-muted mb-1">
+              <i class="fas fa-map-marker-alt me-2"></i>Bengaluru, Karnataka
+            </p>
+            <p class="text-muted mb-1">
+              <i class="fas fa-phone me-2"></i>1800-XXX-XXXX
+            </p>
+            <p class="text-muted">
+              <i class="fas fa-envelope me-2"></i>info@akshayapatra.org
+            </p>
+          </div>
+        </div>
+        <div class="text-center pt-4 mt-4" style="border-top: 1px solid #333">
+          <p class="text-muted mb-0">
+            &copy; 2024 The Akshaya Patra Foundation. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
